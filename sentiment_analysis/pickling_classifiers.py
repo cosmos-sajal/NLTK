@@ -48,6 +48,7 @@ def find_features(sentence):
 
 featuresets = [(find_features(rev), category) for (rev, category) in documents]
 random.shuffle(featuresets)
+pickling(featuresets, 'featuresets')
 
 # segregating training and testing set
 testing_set = featuresets[4300:]
@@ -57,6 +58,8 @@ training_set = featuresets[:4300]
 def classify():
 	# Original Naive Bayes
 	classifier = nltk.NaiveBayesClassifier.train(training_set)
+	print "dekho"
+	print type(training_set)
 	print("Original Naive Bayes Classifer Accuracy:", (nltk.classify.accuracy(classifier, testing_set)) * 100)
 	pickling(classifier, 'original_naive_bayes_classifer')
 
@@ -102,20 +105,3 @@ classify()
 # pickling
 pickling(documents, 'documents')
 pickling(word_features, 'word_features5k')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
